@@ -8,17 +8,17 @@ def main():
     gender = input("Please enter your gender (M/F): ").lower()
     birthdate = input("Please enter your birthdate (YYYY-MM-DD): ")
     height = float(input("Please enter your height (in inches): "))
-    weight = float(input("Please enter your weight (in pounds): "))
+    weight = float(input("Please enter your weight (in british stones): "))
     # Call the compute_age, kg_from_lb, cm_from_in,
     # body_mass_index, and basal_metabolic_rate functions
     # as needed.
     age = compute_age(birthdate)
-    kg = round(kg_from_lb(weight), 2)
-    cm = round(cm_from_in(height), 1)
-    bmi = round(body_mass_index(kg, cm), 1)
-    bmr = round(basal_metabolic_rate(gender, kg, cm, age))
+    kg = round(kg_from_stone(weight), 2)
+    m = round(cm_from_in(height), 1)
+    bmi = round(body_mass_index(kg, m), 1)
+    bmr = round(basal_metabolic_rate(gender, kg, m, age))
     # Print the results for the user to see.
-    print(f"Age (years): {age}\nWeight (kg): {kg}\nHeight (cm): {cm}\nBody Mass Index: {bmi}\nBasal Metabolic Rate (kcals/day): {bmr}")
+    print(f"Age (years): {age}\nWeight (kg): {kg}\nHeight (m): {m}\nBody Mass Index: {bmi}\nBasal Metabolic Rate (kcals/day): {bmr}")
 
 
 def compute_age(birth_str):
@@ -45,13 +45,13 @@ def compute_age(birth_str):
     return years
 
 
-def kg_from_lb(pounds):
+def kg_from_stone(stone):
     """Convert a mass in pounds to kilograms.
     Parameter pounds: a mass in U.S. pounds.
     Return: the mass in kilograms.
     """
-    lbs = pounds * 0.45359237
-    return lbs
+    kg = stone * 6.35029
+    return kg
 
 
 def cm_from_in(inches):
@@ -59,8 +59,8 @@ def cm_from_in(inches):
     Parameter inches: a length in inches.
     Return: the length in centimeters.
     """
-    cm = inches * 2.54
-    return cm
+    m = inches * 0.0254
+    return m
 
 
 def body_mass_index(weight, height):
